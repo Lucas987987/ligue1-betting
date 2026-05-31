@@ -1,0 +1,66 @@
+name: Validation walk-forward
+
+# Étage 4. Évalue le modèle Dixon-Coles en walk-forward (sans fuite temporelle) :
+# log-loss, Brier et calibration, comparés au marché (cotes de clôture) et à une
+# baseline naïve. Répond à : le modèle est-il bon ? (= calibré + bat le marché).
+#
+# Hors pipeline de prod : se lance manuellement. Réentraîne le modèle journée par
+# journée (~une centaine de fits, ~2-3 min en fréquentiste).
+#
+# Le rapport (verdict + calibration) est publié dans le résumé du run. Les CSV
+# (summary, calibration) sont committés dans data/validation/.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: validation
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le repo
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installer les dépendances
+        run: pip install numpy scipy
+
+      - name: Lancer la validation walk-forward
+        run: |
+          PYTHONPATH=src python -m validation.walkforward > validation_report.txt 2>&1
+          cat validation_report.txt
+
+      - name: Publier le rapport dans le résumé du run
+        if: always()
+        run: |
+          {
+            echo "## Rapport de validation walk-forward"
+            echo ""
+            echo '```'
+            cat validation_report.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Committer les résultats de validation
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/validation/
+          if git diff --staged --quiet; then
+            echo "Résultats de validation inchangés — rien à committer."
+          else
+            git commit -m "validation: walk-forward $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          fi
+
