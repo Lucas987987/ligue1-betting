@@ -1,0 +1,68 @@
+name: Modèle bayésien (fit MAP+Laplace)
+
+# Ajuste le Dixon-Coles bayésien hiérarchique (MAP + Laplace) sur matches.csv.
+# Produit les forces AVEC incertitude et des prédictions 1/N/2 avec intervalles
+# de crédibilité. Pas de PyMC : numpy/scipy suffisent (rapide, quelques secondes
+# à ~1-2 min selon la taille de la hessienne).
+#
+# Sorties dans data/model/ :
+#   params_bayes.json, team_ratings_bayes.csv, sample_predictions_bayes.csv
+#
+# Déclenchement manuel. Le découplage fit/predict viendra si besoin ; ici le fit
+# reste assez rapide pour un usage direct.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: model-fit-bayes
+  cancel-in-progress: false
+
+jobs:
+  fit-bayes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Récupérer le repo
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installer les dépendances
+        run: pip install numpy scipy
+
+      - name: Ajuster le modèle bayésien
+        run: |
+          PYTHONPATH=src python -m model.fit_bayes > model_bayes_report.txt 2>&1
+          cat model_bayes_report.txt
+
+      - name: Publier le rapport dans le résumé du run
+        if: always()
+        run: |
+          {
+            echo "## Rapport d'ajustement bayésien (MAP + Laplace)"
+            echo ""
+            echo '```'
+            cat model_bayes_report.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Committer les sorties du modèle
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/model/
+          if git diff --staged --quiet; then
+            echo "Sorties du modèle bayésien inchangées — rien à committer."
+          else
+            git commit -m "model: fit bayésien MAP+Laplace $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          fi
+
