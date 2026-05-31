@@ -1,0 +1,4 @@
+home,away,P_home,home_lo,home_hi,P_draw,P_away,away_lo,away_hi
+Paris SG,Marseille,0.595,0.518,0.666,0.211,0.194,0.148,0.250
+Paris SG,Metz,0.853,0.793,0.901,0.101,0.046,0.028,0.072
+Metz,Paris SG,0.089,0.060,0.128,0.152,0.759,0.691,0.819
