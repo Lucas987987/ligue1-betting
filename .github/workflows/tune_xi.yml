@@ -1,0 +1,64 @@
+name: Choix de xi (décroissance temporelle)
+
+# Choisit l'hyperparamètre ξ de décroissance temporelle de façon rigoureuse :
+# sélection sur les saisons 2324+2425, test final sur 2526 (intouché).
+# Réutilise le walk-forward, donc plusieurs fits pondérés par valeur de ξ
+# (la grille compte ~9 valeurs × ~2 saisons de dates) : compter ~15-25 min.
+#
+# Hors prod : lancement manuel. Le rapport (grille + verdict) va dans le résumé.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tune-xi
+  cancel-in-progress: false
+
+jobs:
+  tune:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Récupérer le repo
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installer les dépendances
+        run: pip install numpy scipy
+
+      - name: Choisir xi (sélection + test)
+        run: |
+          PYTHONPATH=src python -m validation.tune_xi > xi_report.txt 2>&1
+          cat xi_report.txt
+
+      - name: Publier le rapport dans le résumé du run
+        if: always()
+        run: |
+          {
+            echo "## Choix de ξ (décroissance temporelle)"
+            echo ""
+            echo '```'
+            cat xi_report.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Committer le résultat
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/validation/
+          if git diff --staged --quiet; then
+            echo "Résultat inchangé — rien à committer."
+          else
+            git commit -m "validation: tuning xi $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          fi
+
