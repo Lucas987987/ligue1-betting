@@ -58,6 +58,44 @@ class BayesParams:
     def index(self, team: str) -> int:
         return self.teams.index(team)
 
+    # ------------------------------------------------------------------ #
+    # Sauvegarde / rechargement (découplage fit/predict)
+    # ------------------------------------------------------------------ #
+    def to_dict(self) -> dict:
+        """Sérialise tout ce qu'il faut pour reconstruire les prédictions AVEC
+        intervalles : forces, scalaires, vecteur MAP, covariance, layout.
+        La covariance (~41 Ko pour 25 équipes) permet de ré-échantillonner les
+        intervalles de crédibilité sans réajuster le modèle."""
+        return {
+            "teams": self.teams,
+            "attack": self.attack.tolist(),
+            "defence": self.defence.tolist(),
+            "home_adv": self.home_adv, "rho": self.rho,
+            "intercept": self.intercept,
+            "sigma_att": self.sigma_att, "sigma_def": self.sigma_def,
+            "mean_vector": self.mean_vector.tolist(),
+            "cov_matrix": self.cov_matrix.tolist(),
+            "layout": {k: ([v.start, v.stop] if isinstance(v, slice) else v)
+                       for k, v in self._layout.items()},
+        }
+
+    @classmethod
+    def from_dict(cls, d: dict) -> "BayesParams":
+        layout = {}
+        for k, v in d["layout"].items():
+            layout[k] = slice(v[0], v[1]) if isinstance(v, list) else v
+        return cls(
+            teams=list(d["teams"]),
+            attack=np.asarray(d["attack"]),
+            defence=np.asarray(d["defence"]),
+            home_adv=float(d["home_adv"]), rho=float(d["rho"]),
+            intercept=float(d["intercept"]),
+            sigma_att=float(d["sigma_att"]), sigma_def=float(d["sigma_def"]),
+            mean_vector=np.asarray(d["mean_vector"]),
+            cov_matrix=np.asarray(d["cov_matrix"]),
+            _layout=layout,
+        )
+
 
 # ---------------------------------------------------------------------- #
 # Paramétrage du vecteur d'optimisation
