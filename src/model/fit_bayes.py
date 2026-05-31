@@ -77,7 +77,7 @@ def run(matches_path: Path = DEFAULT_MATCHES, model_dir: Path = DEFAULT_MODEL_DI
 
     model_dir.mkdir(parents=True, exist_ok=True)
 
-    # 1. Paramètres.
+    # 1. Paramètres (résumé lisible).
     (model_dir / "params_bayes.json").write_text(
         json.dumps({
             "teams": params.teams,
@@ -87,6 +87,14 @@ def run(matches_path: Path = DEFAULT_MATCHES, model_dir: Path = DEFAULT_MODEL_DI
             "intercept": params.intercept,
             "sigma_att": params.sigma_att, "sigma_def": params.sigma_def,
         }, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
+    # 1b. Paramètres COMPLETS (avec covariance) pour le scoring : permet de
+    # reconstruire les prédictions avec intervalles sans réajuster (découplage
+    # fit/predict, cf. ARCHITECTURE.md).
+    (model_dir / "params_bayes_full.json").write_text(
+        json.dumps(params.to_dict(), ensure_ascii=False),
         encoding="utf-8",
     )
 
