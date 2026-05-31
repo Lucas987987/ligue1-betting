@@ -1,0 +1,66 @@
+name: Modèle Dixon-Coles (fit)
+
+# Étage 3a (V1 fréquentiste). Ajuste le Dixon-Coles sur data/processed/matches.csv
+# et committe les sorties dans data/model/ :
+#   - params.json            (paramètres estimés)
+#   - team_ratings.csv       (classement des forces par équipe)
+#   - sample_predictions.csv (quelques prédictions 1/N/2 d'affiche)
+#
+# Déclenchement manuel pour l'instant. Le fit fréquentiste est rapide (scipy),
+# pas besoin du découplage fit/predict du bayésien. On enrichira quand on
+# passera au modèle bayésien (PyMC, plus lent).
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: model-fit
+  cancel-in-progress: false
+
+jobs:
+  fit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le repo
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installer les dépendances
+        run: pip install numpy scipy
+
+      - name: Ajuster le modèle
+        run: |
+          PYTHONPATH=src python -m model.fit > model_fit_report.txt 2>&1
+          cat model_fit_report.txt
+
+      - name: Publier le rapport dans le résumé du run
+        if: always()
+        run: |
+          {
+            echo "## Rapport d'ajustement Dixon-Coles"
+            echo ""
+            echo '```'
+            cat model_fit_report.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Committer les sorties du modèle
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/model/
+          if git diff --staged --quiet; then
+            echo "Sorties du modèle inchangées — rien à committer."
+          else
+            git commit -m "model: fit Dixon-Coles $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          fi
+
