@@ -1,0 +1,57 @@
+name: Ingestion football-data (Ligue 1)
+
+# Étage 1 du pipeline. Télécharge les 5 dernières saisons de Ligue 1 depuis
+# football-data.co.uk et committe les captures immuables dans data/raw/footballdata/.
+#
+# Deux déclencheurs :
+#   - workflow_dispatch : bouton manuel "Run workflow" (pour la 1re ingestion et les tests)
+#   - schedule (cron)   : automatique, 2x/semaine, calé sur le rythme de football-data
+#
+# Grâce à la déduplication par hash dans footballdata.py, si rien n'a changé
+# côté source, aucun fichier n'est créé et aucun commit n'est fait (pas de bruit).
+
+on:
+  workflow_dispatch:        # déclenchement manuel depuis l'onglet Actions
+  schedule:
+    # Mardi et vendredi à 06:00 UTC. football-data publie dim. et mer. soir ;
+    # on ingère le lendemain matin pour récupérer les mises à jour.
+    - cron: "0 6 * * 2,5"
+
+# Le workflow doit pouvoir committer les captures dans le repo.
+permissions:
+  contents: write
+
+# Évite deux ingestions simultanées qui se marcheraient dessus.
+concurrency:
+  group: ingest-footballdata
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le repo
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Lancer l'ingestion des 5 dernières saisons
+        run: |
+          PYTHONPATH=src python -m ingestion.footballdata
+
+      - name: Committer les nouvelles captures (s'il y en a)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # N'ajoute que la couche raw football-data.
+          git add data/raw/footballdata/
+          # Si rien n'a changé (déduplication), git commit échoue : on l'ignore proprement.
+          if git diff --staged --quiet; then
+            echo "Aucune nouvelle capture (données inchangées) — rien à committer."
+          else
+            git commit -m "data(raw): ingestion football-data Ligue 1 $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          fi
