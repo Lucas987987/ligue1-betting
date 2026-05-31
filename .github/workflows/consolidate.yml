@@ -1,0 +1,77 @@
+name: Consolidation (matches.csv)
+
+# Étage 2 du pipeline. Lit les captures raw de football-data, normalise les noms
+# d'équipes via config/team_mapping.csv, et produit data/processed/matches.csv.
+#
+# Particularité : ce workflow sert AUSSI à diagnostiquer le mapping. Tant que des
+# équipes (promus/relégués des saisons passées) manquent dans team_mapping.csv,
+# il affiche la liste à compléter dans le résumé, committe le matches.csv partiel
+# (pour inspection), et marque le run en échec pour que tu voies qu'il reste du
+# travail. Une fois le mapping complet, le run passe au vert.
+
+on:
+  workflow_dispatch:        # bouton manuel (principal usage en phase de mise au point)
+  # Pas de cron pour l'instant : on consolidera automatiquement après l'ingestion
+  # une fois le mapping stabilisé (on chaînera les workflows plus tard).
+
+permissions:
+  contents: write
+
+concurrency:
+  group: consolidate
+  cancel-in-progress: false
+
+jobs:
+  consolidate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le repo
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Lancer la consolidation
+        id: build
+        run: |
+          # On capture la sortie pour la mettre aussi dans le résumé du run.
+          # `|| true` : on ne stoppe pas ici même si le mapping est incomplet,
+          # car on veut committer le matches.csv partiel et afficher le rapport.
+          set -o pipefail
+          PYTHONPATH=src python -m consolidation.build_matches \
+            > consolidation_report.txt 2>&1 && echo "status=ok" >> "$GITHUB_OUTPUT" \
+            || echo "status=incomplete" >> "$GITHUB_OUTPUT"
+          cat consolidation_report.txt
+
+      - name: Publier le rapport dans le résumé du run
+        if: always()
+        run: |
+          {
+            echo "## Rapport de consolidation"
+            echo ""
+            echo '```'
+            cat consolidation_report.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Committer matches.csv
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/processed/matches.csv
+          if git diff --staged --quiet; then
+            echo "matches.csv inchangé — rien à committer."
+          else
+            git commit -m "data(processed): consolidation matches.csv $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          fi
+
+      - name: Échouer si le mapping est incomplet
+        if: steps.build.outputs.status == 'incomplete'
+        run: |
+          echo "::error::Des équipes ne sont pas résolues. Compléter config/team_mapping.csv (voir le résumé du run), puis relancer."
+          exit 1
+
