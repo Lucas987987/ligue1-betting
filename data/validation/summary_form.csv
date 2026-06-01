@@ -1,0 +1,6 @@
+metric,model_form,ref_bayes,market
+log_loss,1.0035,1.0009,0.9812
+brier,0.6002,0.5981,0.5853
+gamma_mean,0.0375,,
+delta_mean,-0.0512,,
+n_evaluated,915,,915
