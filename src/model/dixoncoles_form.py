@@ -1,168 +1,134 @@
-"""Validation walk-forward du modèle enrichi de la FORME.
+"""Dixon-Coles enrichi de la FORME (résidus orthogonaux), coefficients par MLE.
 
-Compare le modèle-forme au modèle de base et au marché, sur exactement les mêmes
-matchs, même protocole sans fuite vers le futur. Verdict : la forme-résidu
-améliore-t-elle la log-loss (réf. bayésien 1.0009, fréquentiste 1.0037,
-marché 0.9812) — ou son coefficient ressort-il négligeable ?
+Étend le modèle de base avec deux termes additifs sur les log-taux :
 
-ANTI-FUITE (le point sensible, documenté clairement) :
-  À chaque date d'évaluation D :
-    1. On entraîne UN modèle de base sur le passé strict (matchs < D).
-    2. On l'utilise pour calculer la forme-résidu de chaque équipe à partir de
-       ses matchs récents (tous < D). Compromis assumé : ces résidus emploient un
-       modèle qui a vu ces matchs (léger optimisme), MAIS aucune information ≥ D
-       n'entre. La fuite vers le FUTUR — la seule qui invaliderait la validation —
-       est exclue. C'est la pratique standard.
-    3. On calcule la forme de CHAQUE match d'entraînement (avec ce même modèle de
-       base) pour pouvoir réajuster un modèle ENRICHI sur le passé.
-    4. On prédit le match de D avec le modèle enrichi, en utilisant la forme des
-       deux équipes calculée à l'étape 2.
+    log(λ) = intercept + home_adv + att[h] − def[a] + γ·formeOff[h] + δ·formeDef[a]
+    log(μ) = intercept           + att[a] − def[h] + γ·formeOff[a] + δ·formeDef[h]
 
-Coût : un fit de base + un fit enrichi par date. Réaliste pour MAP fréquentiste.
+  γ (gamma) : poids de la forme offensive (a-t-on marqué plus que prévu récemment ?)
+  δ (delta) : poids de la forme défensive de l'adversaire.
+
+γ et δ sont estimés par maximum de vraisemblance AVEC le reste. S'ils ressortent
+≈ 0, la forme n'apporte rien — verdict honnête, pas de dégradation.
+
+La forme par match (formeOff/formeDef de chaque équipe AVANT ce match) est fournie
+en entrée : ce module ne la calcule pas (cf. signals/form.py), il l'intègre. Cela
+garde la responsabilité de l'anti-fuite chez l'appelant (walk-forward).
+
+Réutilise tau du modèle de base (une seule définition de la correction DC).
 """
 
 from __future__ import annotations
 
-import csv
-import math
-from pathlib import Path
+from dataclasses import dataclass
 
-from model.dixoncoles import fit as fit_base
-from model.dixoncoles_form import fit_form, predict_1x2_form
-from signals.form import compute_form, expected_goals_from_params, MatchOutcome
+import numpy as np
+from scipy.optimize import minimize
+from scipy.stats import poisson
 
-from validation.walkforward import (
-    BURN_IN_SEASONS, DEFAULT_MATCHES, DEFAULT_OUT, EPS,
-    Metrics, calibration_table, load_matches, market_probs,
-)
-
-FORM_WINDOW = 5
+from model.dixoncoles import tau, MAX_GOALS
 
 
-def _expected_goals_factory(base_params):
-    """Fournit expected_goals(date, home, away) à partir d'un modèle de base.
-    La date n'est pas utilisée (le modèle de base est déjà figé sur le passé de
-    la date d'évaluation) — signature conservée pour l'API de compute_form."""
-    known = set(base_params.teams)
+@dataclass
+class FormParams:
+    teams: list[str]
+    attack: np.ndarray
+    defence: np.ndarray
+    home_adv: float
+    rho: float
+    intercept: float
+    gamma: float          # poids forme offensive
+    delta: float          # poids forme défensive
 
-    def eg(_date, home, away):
-        if home not in known or away not in known:
-            return 1.3, 1.1  # valeurs neutres si équipe inconnue (rare)
-        return expected_goals_from_params(base_params, home, away)
-    return eg
-
-
-def walk_forward_form(matches):
-    m_form, m_market = Metrics(), Metrics()
-    n_unknown = 0
-    gammas, deltas = [], []
-
-    eval_matches = [m for m in matches if m.season not in BURN_IN_SEASONS]
-    eval_dates = sorted({m.date for m in eval_matches})
-
-    # Historique au format MatchOutcome (pour compute_form).
-    all_outcomes = [
-        MatchOutcome(m.date, m.home, m.away, m.hg, m.ag) for m in matches
-    ]
-
-    for d in eval_dates:
-        train = [m for m in matches if m.date < d]
-        if len(train) < 150:
-            continue
-
-        # 1. Modèle de base sur le passé strict.
-        base = fit_base([m.home for m in train], [m.away for m in train],
-                        [m.hg for m in train], [m.ag for m in train])
-        known = set(base.teams)
-        eg = _expected_goals_factory(base)
-
-        hist_before_d = [o for o in all_outcomes if o.date < d]
-
-        # 3. Forme de chaque match d'entraînement (pour réajuster enrichi).
-        foh, fdh, foa, fda = [], [], [], []
-        for m in train:
-            fh = compute_form(m.date, m.home, hist_before_d, eg, FORM_WINDOW)
-            fa = compute_form(m.date, m.away, hist_before_d, eg, FORM_WINDOW)
-            foh.append(fh.off); fdh.append(fh.deff)
-            foa.append(fa.off); fda.append(fa.deff)
-
-        enriched = fit_form(
-            [m.home for m in train], [m.away for m in train],
-            [m.hg for m in train], [m.ag for m in train],
-            foh, fdh, foa, fda,
-        )
-        gammas.append(enriched.gamma); deltas.append(enriched.delta)
-
-        # 4. Prédire les matchs de D avec la forme des deux équipes.
-        for m in (mt for mt in eval_matches if mt.date == d):
-            if m.home not in known or m.away not in known:
-                n_unknown += 1
-                continue
-            fh = compute_form(d, m.home, hist_before_d, eg, FORM_WINDOW)
-            fa = compute_form(d, m.away, hist_before_d, eg, FORM_WINDOW)
-            probs = predict_1x2_form(
-                enriched, m.home, m.away,
-                form_off_home=fh.off, form_def_home=fh.deff,
-                form_off_away=fa.off, form_def_away=fa.deff,
-            )
-            m_form.add(probs, m.result)
-            if m.odds is not None:
-                m_market.add(market_probs(m.odds), m.result)
-
-    return m_form, m_market, n_unknown, gammas, deltas
+    def index(self, team: str) -> int:
+        return self.teams.index(team)
 
 
-def run(matches_path: Path = DEFAULT_MATCHES, out_dir: Path = DEFAULT_OUT):
-    matches = load_matches(matches_path)
-    print(f"Matchs chargés : {len(matches)}")
-
-    m_form, m_market, n_unknown, gammas, deltas = walk_forward_form(matches)
-
-    avg_g = sum(gammas) / len(gammas) if gammas else float("nan")
-    avg_d = sum(deltas) / len(deltas) if deltas else float("nan")
-
-    print(f"\nMatchs évalués : {m_form.n}  (ignorés : {n_unknown})")
-    print(f"\nCoefficients de forme estimés (moyenne sur les fits) :")
-    print(f"  γ (offensive) : {avg_g:+.4f}")
-    print(f"  δ (défensive) : {avg_d:+.4f}")
-
-    print("\n=== LOG-LOSS ===")
-    print(f"  Modèle + forme : {m_form.log_loss:.4f}")
-    print(f"  (réf. bayésien : 1.0009 · fréquentiste : 1.0037)")
-    print(f"  Marché         : {m_market.log_loss:.4f}")
-
-    print("\n=== BRIER ===")
-    print(f"  Modèle + forme : {m_form.brier:.4f}  (réf. bayésien 0.5981)")
-
-    print("\n=== VERDICT ===")
-    if abs(avg_g) < 0.03 and abs(avg_d) < 0.03:
-        print("  ~ Coefficients de forme quasi nuls : la forme-résidu n'apporte")
-        print("    presque rien. Le modèle de base suffit. Résultat honnête.")
-    else:
-        print(f"  Coefficients non négligeables (γ={avg_g:+.3f}, δ={avg_d:+.3f}).")
-        print(f"  Comparer la log-loss {m_form.log_loss:.4f} à la référence")
-        print(f"  bayésienne 1.0009 : meilleure => la forme aide ; pire ou égale")
-        print(f"  => elle ajoute du bruit malgré un coefficient non nul.")
-
-    print("\n=== CALIBRATION ===")
-    print("  tranche      n     prédit   réel")
-    for label, k, pred, real in calibration_table(m_form):
-        flag = "" if abs(pred - real) < 0.05 else "  <-- écart"
-        print(f"  {label:<10} {k:>4}   {pred:.3f}   {real:.3f}{flag}")
-
-    out_dir.mkdir(parents=True, exist_ok=True)
-    with (out_dir / "summary_form.csv").open("w", newline="", encoding="utf-8") as fh:
-        w = csv.writer(fh)
-        w.writerow(["metric", "model_form", "ref_bayes", "market"])
-        w.writerow(["log_loss", f"{m_form.log_loss:.4f}", "1.0009", f"{m_market.log_loss:.4f}"])
-        w.writerow(["brier", f"{m_form.brier:.4f}", "0.5981", f"{m_market.brier:.4f}"])
-        w.writerow(["gamma_mean", f"{avg_g:.4f}", "", ""])
-        w.writerow(["delta_mean", f"{avg_d:.4f}", "", ""])
-        w.writerow(["n_evaluated", m_form.n, "", m_market.n])
-
-    print("\nÉcrit : validation/summary_form.csv")
-    return m_form, m_market, avg_g, avg_d
+def _unpack(theta, n):
+    a_free = theta[:n - 1]
+    d_free = theta[n - 1:2 * (n - 1)]
+    attack = np.concatenate([a_free, [-a_free.sum()]])
+    defence = np.concatenate([d_free, [-d_free.sum()]])
+    home_adv = theta[2 * (n - 1)]
+    rho = theta[2 * (n - 1) + 1]
+    intercept = theta[2 * (n - 1) + 2]
+    gamma = theta[2 * (n - 1) + 3]
+    delta = theta[2 * (n - 1) + 4]
+    return attack, defence, home_adv, rho, intercept, gamma, delta
 
 
-if __name__ == "__main__":  # pragma: no cover
-    run()
+def _neg_log_likelihood(theta, hi, ai, hg, ag, n,
+                        foff_h, fdef_h, foff_a, fdef_a):
+    attack, defence, home_adv, rho, intercept, gamma, delta = _unpack(theta, n)
+
+    log_lam = (intercept + home_adv + attack[hi] - defence[ai]
+               + gamma * foff_h + delta * fdef_a)
+    log_mu = (intercept + attack[ai] - defence[hi]
+              + gamma * foff_a + delta * fdef_h)
+    lam = np.exp(log_lam)
+    mu = np.exp(log_mu)
+
+    ll = poisson.logpmf(hg, lam) + poisson.logpmf(ag, mu)
+    t = tau(hg, ag, lam, mu, rho)
+    if np.any(t <= 0):
+        return 1e10
+    ll = ll + np.log(t)
+    return -np.sum(ll)
+
+
+def fit_form(home_teams, away_teams, home_goals, away_goals,
+             form_off_home, form_def_home, form_off_away, form_def_away):
+    """Ajuste le modèle enrichi. Les `form_*` sont des tableaux alignés sur les
+    matchs : forme de chaque équipe AVANT le match correspondant (fournie par
+    l'appelant, sans fuite)."""
+    teams = sorted(set(home_teams) | set(away_teams))
+    n = len(teams)
+    idx = {t: i for i, t in enumerate(teams)}
+    hi = np.array([idx[t] for t in home_teams])
+    ai = np.array([idx[t] for t in away_teams])
+    hg = np.asarray(home_goals, dtype=int)
+    ag = np.asarray(away_goals, dtype=int)
+    foff_h = np.asarray(form_off_home, dtype=float)
+    fdef_h = np.asarray(form_def_home, dtype=float)
+    foff_a = np.asarray(form_off_away, dtype=float)
+    fdef_a = np.asarray(form_def_away, dtype=float)
+
+    theta0 = np.zeros(2 * (n - 1) + 5)
+    theta0[2 * (n - 1)] = 0.25      # home_adv
+    theta0[2 * (n - 1) + 1] = -0.1  # rho
+    # gamma, delta initialisés à 0 : on part de "la forme ne compte pas".
+
+    res = minimize(
+        _neg_log_likelihood, theta0,
+        args=(hi, ai, hg, ag, n, foff_h, fdef_h, foff_a, fdef_a),
+        method="L-BFGS-B", options={"maxiter": 2000},
+    )
+    attack, defence, home_adv, rho, intercept, gamma, delta = _unpack(res.x, n)
+    return FormParams(
+        teams=teams, attack=attack, defence=defence,
+        home_adv=float(home_adv), rho=float(rho), intercept=float(intercept),
+        gamma=float(gamma), delta=float(delta),
+    )
+
+
+def predict_1x2_form(params: FormParams, home: str, away: str,
+                     form_off_home=0.0, form_def_home=0.0,
+                     form_off_away=0.0, form_def_away=0.0) -> dict:
+    """Prédiction 1/N/2 avec les termes de forme du match à prédire."""
+    i, j = params.index(home), params.index(away)
+    lam = np.exp(params.intercept + params.home_adv
+                 + params.attack[i] - params.defence[j]
+                 + params.gamma * form_off_home + params.delta * form_def_away)
+    mu = np.exp(params.intercept + params.attack[j] - params.defence[i]
+                + params.gamma * form_off_away + params.delta * form_def_home)
+    goals = np.arange(MAX_GOALS + 1)
+    mat = np.outer(poisson.pmf(goals, lam), poisson.pmf(goals, mu))
+    for x in (0, 1):
+        for y in (0, 1):
+            mat[x, y] *= tau(x, y, lam, mu, params.rho)
+    mat /= mat.sum()
+    return {
+        "home": float(np.tril(mat, -1).sum()),
+        "draw": float(np.trace(mat)),
+        "away": float(np.triu(mat, 1).sum()),
+               }
