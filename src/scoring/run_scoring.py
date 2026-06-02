@@ -27,6 +27,10 @@ from common.teams import TeamResolver, UnknownTeamError
 from model.dixoncoles_bayes import BayesParams, predict_1x2_bayes
 from scoring.value import score_match, ISSUES
 from scoring.betlog import record_bets, DEFAULT_SCORE_THRESHOLD
+from scoring.totals import predict_over_under
+from scoring.totals_odds import extract_totals
+from scoring.score_totals import score_over_under
+from scoring.betlog_ou import record_bets_ou
 
 _ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_ODDS_DIR = _ROOT / "data" / "raw" / "oddsapi"
@@ -131,6 +135,7 @@ def run(
     known = set(params.teams)
 
     match_scores = []
+    ou_match_scores = []
     match_dates: dict[tuple[str, str], str] = {}
     n_unresolved = 0
     n_unknown_model = 0
@@ -150,18 +155,34 @@ def run(
         match_scores.append(ms)
         match_dates[(home, away)] = mdate
 
-    print(f"Matchs scorés : {len(match_scores)}")
+        # Over/Under : cotes totals du même événement + prédiction du modèle.
+        ou_odds = extract_totals(ev)
+        if ou_odds:  # seulement si des totaux sont cotés
+            ou_pred = predict_over_under(params, home, away, n_samples=300)
+            ou_ms = score_over_under(home, away, ou_pred, ou_odds, n_matches=counts)
+            if ou_ms.issues:
+                ou_match_scores.append(ou_ms)
+
+    print(f"Matchs scorés (1/N/2) : {len(match_scores)}")
+    print(f"Matchs avec over/under coté : {len(ou_match_scores)}")
     if n_unresolved:
         print(f"  Non résolus (noms/cotes incomplètes) : {n_unresolved}")
     if n_unknown_model:
         print(f"  Hors modèle (équipe sans historique) : {n_unknown_model}")
 
-    # Journalisation des paris dépassant le seuil.
+    # Journalisation 1/N/2 (journal principal).
     added = record_bets(match_scores, match_dates, threshold=threshold, now=now)
-    print(f"\nNouveaux paris journalisés (score ≥ {threshold}) : {len(added)}")
+    print(f"\nNouveaux paris 1/N/2 journalisés (score ≥ {threshold}) : {len(added)}")
     for r in added:
         print(f"  {r.match_date}  {r.home} vs {r.away}  [{r.issue}]  "
               f"cote={r.odds}  EV={r.ev:+.3f}  score={r.score:.3f}")
+
+    # Journalisation over/under (journal séparé).
+    added_ou = record_bets_ou(ou_match_scores, match_dates, threshold=threshold, now=now)
+    print(f"\nNouveaux paris over/under journalisés (score ≥ {threshold}) : {len(added_ou)}")
+    for r in added_ou:
+        print(f"  {r.match_date}  {r.home} vs {r.away}  "
+              f"[{r.side} {r.threshold}]  cote={r.odds}  EV={r.ev:+.3f}  score={r.score:.3f}")
 
     # Aperçu des meilleurs scores du run (même non journalisés).
     if match_scores:
@@ -169,12 +190,12 @@ def run(
             (s for ms in match_scores for s in ms.issues.values()),
             key=lambda s: s.score, reverse=True,
         )[:5]
-        print("\nTop opportunités du run :")
+        print("\nTop opportunités 1/N/2 du run :")
         for s in ranked:
             print(f"  [{s.issue}] EV={s.ev:+.3f} signal={s.signal:+.3f} "
                   f"fiab={s.reliability:.3f} score={s.score:.3f}")
 
-    return match_scores
+    return match_scores, ou_match_scores
 
 
 if __name__ == "__main__":  # pragma: no cover
