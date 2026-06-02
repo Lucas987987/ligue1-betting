@@ -36,7 +36,7 @@ from urllib.request import Request, urlopen
 
 SPORT_KEY = "soccer_france_ligue_one"
 REGION = "eu"
-MARKET = "h2h"
+MARKET = "h2h,totals"  # h2h (1/N/2) + totals (over/under). 2 crédits/appel.
 BASE_URL = "https://api.the-odds-api.com/v4"
 
 DEFAULT_RAW_DIR = (
@@ -130,7 +130,6 @@ def _validate_payload(body: bytes) -> list:
     except json.JSONDecodeError as e:
         raise OddsApiError(f"Réponse non-JSON : {body[:200]!r}") from e
     if isinstance(data, dict):
-        # L'API renvoie un objet {"message": "..."} en cas d'erreur.
         msg = data.get("message") or str(data)
         raise OddsApiError(f"Erreur API : {msg}")
     if not isinstance(data, list):
@@ -147,12 +146,7 @@ def ingest_odds(
     downloader: Callable[[str], tuple[bytes, dict]] = _default_downloader,
     now: datetime | None = None,
 ) -> OddsSnapshot:
-    """Capture un snapshot des cotes Ligue 1, immuable et horodaté.
-
-    - Valide que la réponse est bien une liste d'événements (sinon OddsApiError).
-    - Si identique au dernier snapshot (hash), ne crée pas de doublon.
-    - Refuse d'écraser un fichier existant.
-    """
+    """Capture un snapshot des cotes Ligue 1, immuable et horodaté."""
     raw_dir = Path(raw_dir)
     raw_dir.mkdir(parents=True, exist_ok=True)
 
@@ -160,9 +154,6 @@ def ingest_odds(
     body, headers = downloader(odds_url(key))
     events = _validate_payload(body)  # lève si erreur API
 
-    # On reformate en JSON canonique (clés triées) pour un hash stable :
-    # deux snapshots au contenu identique donnent le même hash même si l'ordre
-    # des clés varie d'un appel à l'autre.
     canonical = json.dumps(events, sort_keys=True, separators=(",", ":")).encode()
     digest = _sha256(canonical)
     remaining = headers.get("x-requests-remaining")
@@ -186,7 +177,6 @@ def ingest_odds(
             f"Refus d'écrasement (couche raw immuable) : {target.name}."
         )
 
-    # On écrit la réponse telle quelle (lisible), pas la version canonique.
     target.write_text(
         json.dumps(events, indent=2, ensure_ascii=False), encoding="utf-8"
     )
