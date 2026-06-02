@@ -57,7 +57,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/bets/
+          mkdir -p data/bets
+          git add data/bets/ || true
           if git diff --staged --quiet; then
             echo "Rapport CLV inchangé — rien à committer."
           else
