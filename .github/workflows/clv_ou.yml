@@ -1,0 +1,62 @@
+name: CLV Over/Under
+
+# Calcule le CLV des paris over/under journalisés (bet_log_ou.csv) contre la
+# clôture Pinnacle P>2.5/P<2.5 de football-data. Seuil 2.5 uniquement (seul avec
+# clôture de référence) ; les autres seuils sont marqués 'sans référence'.
+#
+# À lancer après que les matchs sont joués et football-data réingéré. Tourne en
+# milieu de semaine, comme le CLV 1/N/2.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 9 * * 2,3"   # mardi/mercredi 9h UTC (après le CLV 1/N/2 de 8h)
+
+permissions:
+  contents: write
+
+concurrency:
+  group: clv-ou
+  cancel-in-progress: false
+
+jobs:
+  clv-ou:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le repo
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Calculer le CLV over/under
+        run: |
+          PYTHONPATH=src python -m scoring.clv_ou > clv_ou_report.txt 2>&1
+          cat clv_ou_report.txt
+
+      - name: Publier le rapport dans le résumé du run
+        if: always()
+        run: |
+          {
+            echo "## CLV Over/Under"
+            echo ""
+            echo '```'
+            cat clv_ou_report.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Committer le rapport
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/bets/
+          if git diff --staged --quiet; then
+            echo "Rapport CLV O/U inchangé — rien à committer."
+          else
+            git commit -m "bets: rapport CLV over/under $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          fi
+
