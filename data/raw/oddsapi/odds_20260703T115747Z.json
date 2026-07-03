@@ -1,0 +1,302 @@
+[
+  {
+    "id": "48df026b72fffa82898ff0cfcb02878d",
+    "sport_key": "soccer_france_ligue_one",
+    "sport_title": "Ligue 1 - France",
+    "commence_time": "2026-08-22T15:00:00Z",
+    "home_team": "Angers",
+    "away_team": "Lille",
+    "bookmakers": [
+      {
+        "key": "winamax_de",
+        "title": "Winamax (DE)",
+        "last_update": "2026-07-03T11:56:46Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-07-03T11:56:45Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 4.9
+              },
+              {
+                "name": "Lille",
+                "price": 1.58
+              },
+              {
+                "name": "Draw",
+                "price": 3.8
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "winamax_fr",
+        "title": "Winamax (FR)",
+        "last_update": "2026-07-03T11:57:31Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-07-03T11:57:31Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 4.4
+              },
+              {
+                "name": "Lille",
+                "price": 1.5
+              },
+              {
+                "name": "Draw",
+                "price": 3.4
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "1835d30f4ac2e1f3462f0654e0ea984a",
+    "sport_key": "soccer_france_ligue_one",
+    "sport_title": "Ligue 1 - France",
+    "commence_time": "2026-08-22T15:00:00Z",
+    "home_team": "RC Lens",
+    "away_team": "Auxerre",
+    "bookmakers": [
+      {
+        "key": "winamax_de",
+        "title": "Winamax (DE)",
+        "last_update": "2026-07-03T11:56:46Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-07-03T11:56:45Z",
+            "outcomes": [
+              {
+                "name": "Auxerre",
+                "price": 5.3
+              },
+              {
+                "name": "RC Lens",
+                "price": 1.48
+              },
+              {
+                "name": "Draw",
+                "price": 4.2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "winamax_fr",
+        "title": "Winamax (FR)",
+        "last_update": "2026-07-03T11:57:31Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-07-03T11:57:31Z",
+            "outcomes": [
+              {
+                "name": "Auxerre",
+                "price": 4.7
+              },
+              {
+                "name": "RC Lens",
+                "price": 1.41
+              },
+              {
+                "name": "Draw",
+                "price": 3.75
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "0fe221a0fc71ab3ecfbecf8f1a224b89",
+    "sport_key": "soccer_france_ligue_one",
+    "sport_title": "Ligue 1 - France",
+    "commence_time": "2026-08-22T15:00:00Z",
+    "home_team": "Le Mans FC",
+    "away_team": "Brest",
+    "bookmakers": [
+      {
+        "key": "winamax_de",
+        "title": "Winamax (DE)",
+        "last_update": "2026-07-03T11:56:46Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-07-03T11:56:45Z",
+            "outcomes": [
+              {
+                "name": "Brest",
+                "price": 2.35
+              },
+              {
+                "name": "Le Mans FC",
+                "price": 2.6
+              },
+              {
+                "name": "Draw",
+                "price": 3.4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "winamax_fr",
+        "title": "Winamax (FR)",
+        "last_update": "2026-07-03T11:57:31Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-07-03T11:57:31Z",
+            "outcomes": [
+              {
+                "name": "Brest",
+                "price": 2.2
+              },
+              {
+                "name": "Le Mans FC",
+                "price": 2.4
+              },
+              {
+                "name": "Draw",
+                "price": 3.1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dd38b144d1f20e8eee148914f68f482c",
+    "sport_key": "soccer_france_ligue_one",
+    "sport_title": "Ligue 1 - France",
+    "commence_time": "2026-08-22T15:00:00Z",
+    "home_team": "Nice",
+    "away_team": "Lorient",
+    "bookmakers": [
+      {
+        "key": "winamax_de",
+        "title": "Winamax (DE)",
+        "last_update": "2026-07-03T11:56:46Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-07-03T11:56:46Z",
+            "outcomes": [
+              {
+                "name": "Lorient",
+                "price": 2.95
+              },
+              {
+                "name": "Nice",
+                "price": 2.1
+              },
+              {
+                "name": "Draw",
+                "price": 3.4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "winamax_fr",
+        "title": "Winamax (FR)",
+        "last_update": "2026-07-03T11:57:31Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-07-03T11:57:31Z",
+            "outcomes": [
+              {
+                "name": "Lorient",
+                "price": 2.75
+              },
+              {
+                "name": "Nice",
+                "price": 2.0
+              },
+              {
+                "name": "Draw",
+                "price": 3.1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "0a88bfab377a4bbddf8aec2983bf4c15",
+    "sport_key": "soccer_france_ligue_one",
+    "sport_title": "Ligue 1 - France",
+    "commence_time": "2026-08-22T15:00:00Z",
+    "home_team": "Paris Saint Germain",
+    "away_team": "Rennes",
+    "bookmakers": [
+      {
+        "key": "winamax_de",
+        "title": "Winamax (DE)",
+        "last_update": "2026-07-03T11:56:46Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-07-03T11:56:46Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.32
+              },
+              {
+                "name": "Rennes",
+                "price": 7.0
+              },
+              {
+                "name": "Draw",
+                "price": 5.1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "winamax_fr",
+        "title": "Winamax (FR)",
+        "last_update": "2026-07-03T11:57:31Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-07-03T11:57:31Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.26
+              },
+              {
+                "name": "Rennes",
+                "price": 6.0
+              },
+              {
+                "name": "Draw",
+                "price": 4.4
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
