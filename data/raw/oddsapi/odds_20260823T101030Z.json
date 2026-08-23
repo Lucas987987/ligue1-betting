@@ -1,0 +1,2483 @@
+[
+  {
+    "id": "48df026b72fffa82898ff0cfcb02878d",
+    "sport_key": "soccer_france_ligue_one",
+    "sport_title": "Ligue 1 - France",
+    "commence_time": "2026-08-23T13:00:00Z",
+    "home_team": "Angers",
+    "away_team": "Lille",
+    "bookmakers": [
+      {
+        "key": "winamax_de",
+        "title": "Winamax (DE)",
+        "last_update": "2026-08-23T10:10:30Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:30Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 4.6
+              },
+              {
+                "name": "Lille",
+                "price": 1.72
+              },
+              {
+                "name": "Draw",
+                "price": 3.75
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "winamax_fr",
+        "title": "Winamax (FR)",
+        "last_update": "2026-08-23T10:09:28Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:28Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 4.6
+              },
+              {
+                "name": "Lille",
+                "price": 1.72
+              },
+              {
+                "name": "Draw",
+                "price": 3.75
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "onexbet",
+        "title": "1xBet",
+        "last_update": "2026-08-23T10:10:04Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:04Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 5.08
+              },
+              {
+                "name": "Lille",
+                "price": 1.77
+              },
+              {
+                "name": "Draw",
+                "price": 3.94
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:10:04Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 2.07,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 1.88,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "codere_it",
+        "title": "Codere (IT)",
+        "last_update": "2026-08-23T10:09:45Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 4.8
+              },
+              {
+                "name": "Lille",
+                "price": 1.75
+              },
+              {
+                "name": "Draw",
+                "price": 3.7
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.93,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 1.75,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "betfair_ex_eu",
+        "title": "Betfair",
+        "last_update": "2026-08-23T10:10:05Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:05Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 5.3
+              },
+              {
+                "name": "Lille",
+                "price": 1.8
+              },
+              {
+                "name": "Draw",
+                "price": 3.85
+              }
+            ]
+          },
+          {
+            "key": "h2h_lay",
+            "last_update": "2026-08-23T10:10:05Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 5.4
+              },
+              {
+                "name": "Lille",
+                "price": 1.81
+              },
+              {
+                "name": "Draw",
+                "price": 3.9
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "unibet_fr",
+        "title": "Unibet (FR)",
+        "last_update": "2026-08-23T10:10:04Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:04Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 5.0
+              },
+              {
+                "name": "Lille",
+                "price": 1.66
+              },
+              {
+                "name": "Draw",
+                "price": 3.8
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "betclic_fr",
+        "title": "Betclic (FR)",
+        "last_update": "2026-08-23T10:10:01Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:01Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 5.0
+              },
+              {
+                "name": "Lille",
+                "price": 1.74
+              },
+              {
+                "name": "Draw",
+                "price": 3.8
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "tipico_de",
+        "title": "Tipico",
+        "last_update": "2026-08-23T10:09:45Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 4.7
+              },
+              {
+                "name": "Lille",
+                "price": 1.7
+              },
+              {
+                "name": "Draw",
+                "price": 3.7
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.93,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 1.83,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "coolbet",
+        "title": "Coolbet",
+        "last_update": "2026-08-23T10:10:05Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:05Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 5.0
+              },
+              {
+                "name": "Lille",
+                "price": 1.76
+              },
+              {
+                "name": "Draw",
+                "price": 3.8
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:10:05Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 2.06,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 1.84,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "pinnacle",
+        "title": "Pinnacle",
+        "last_update": "2026-08-23T10:10:27Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:27Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 5.04
+              },
+              {
+                "name": "Lille",
+                "price": 1.76
+              },
+              {
+                "name": "Draw",
+                "price": 3.79
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:10:27Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 2.07,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 1.85,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "everygame",
+        "title": "Everygame",
+        "last_update": "2026-08-23T10:09:01Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:01Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 4.75
+              },
+              {
+                "name": "Lille",
+                "price": 1.73
+              },
+              {
+                "name": "Draw",
+                "price": 3.65
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "suprabets",
+        "title": "Suprabets",
+        "last_update": "2026-08-23T10:06:20Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:06:20Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 4.85
+              },
+              {
+                "name": "Lille",
+                "price": 1.73
+              },
+              {
+                "name": "Draw",
+                "price": 3.67
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "pmu_fr",
+        "title": "PMU (FR)",
+        "last_update": "2026-08-23T10:10:04Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:04Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 5.2
+              },
+              {
+                "name": "Lille",
+                "price": 1.7
+              },
+              {
+                "name": "Draw",
+                "price": 3.8
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:10:04Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.83,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 1.73,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "marathonbet",
+        "title": "Marathon Bet",
+        "last_update": "2026-08-23T10:09:46Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:46Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 5.0
+              },
+              {
+                "name": "Lille",
+                "price": 1.74
+              },
+              {
+                "name": "Draw",
+                "price": 3.88
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "unibet_se",
+        "title": "Unibet (SE)",
+        "last_update": "2026-08-23T10:09:45Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 5.4
+              },
+              {
+                "name": "Lille",
+                "price": 1.73
+              },
+              {
+                "name": "Draw",
+                "price": 3.8
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.96,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 1.85,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "leovegas_se",
+        "title": "LeoVegas (SE)",
+        "last_update": "2026-08-23T10:10:29Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:29Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 5.4
+              },
+              {
+                "name": "Lille",
+                "price": 1.73
+              },
+              {
+                "name": "Draw",
+                "price": 3.8
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:10:29Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.93,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 1.83,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "unibet_nl",
+        "title": "Unibet (NL)",
+        "last_update": "2026-08-23T10:10:27Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:27Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 5.2
+              },
+              {
+                "name": "Lille",
+                "price": 1.7
+              },
+              {
+                "name": "Draw",
+                "price": 3.7
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:10:27Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.93,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 1.83,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "nordicbet",
+        "title": "Nordic Bet",
+        "last_update": "2026-08-23T10:10:28Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:28Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 4.9
+              },
+              {
+                "name": "Lille",
+                "price": 1.72
+              },
+              {
+                "name": "Draw",
+                "price": 3.6
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:10:28Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.98,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 1.82,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "betsson",
+        "title": "Betsson",
+        "last_update": "2026-08-23T10:09:45Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 4.9
+              },
+              {
+                "name": "Lille",
+                "price": 1.72
+              },
+              {
+                "name": "Draw",
+                "price": 3.6
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.98,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 1.82,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "betonlineag",
+        "title": "BetOnline.ag",
+        "last_update": "2026-08-23T10:09:45Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 5.01
+              },
+              {
+                "name": "Lille",
+                "price": 1.76
+              },
+              {
+                "name": "Draw",
+                "price": 3.76
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 2.0,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 1.83,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "sport888",
+        "title": "888sport",
+        "last_update": "2026-08-23T10:09:44Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:44Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 4.6
+              },
+              {
+                "name": "Lille",
+                "price": 1.7
+              },
+              {
+                "name": "Draw",
+                "price": 3.6
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "williamhill",
+        "title": "William Hill",
+        "last_update": "2026-08-23T10:10:06Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:06Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 4.75
+              },
+              {
+                "name": "Lille",
+                "price": 1.7
+              },
+              {
+                "name": "Draw",
+                "price": 3.6
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:10:06Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 2.0,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 1.75,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "gtbets",
+        "title": "GTbets",
+        "last_update": "2026-08-23T10:09:45Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Angers",
+                "price": 4.99
+              },
+              {
+                "name": "Lille",
+                "price": 1.71
+              },
+              {
+                "name": "Draw",
+                "price": 3.78
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.96,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 1.81,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "38b23d1127eb086d775f97b935bbf992",
+    "sport_key": "soccer_france_ligue_one",
+    "sport_title": "Ligue 1 - France",
+    "commence_time": "2026-08-23T15:15:00Z",
+    "home_team": "Le Havre",
+    "away_team": "AS Monaco",
+    "bookmakers": [
+      {
+        "key": "winamax_fr",
+        "title": "Winamax (FR)",
+        "last_update": "2026-08-23T10:09:28Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:28Z",
+            "outcomes": [
+              {
+                "name": "AS Monaco",
+                "price": 1.88
+              },
+              {
+                "name": "Le Havre",
+                "price": 3.7
+              },
+              {
+                "name": "Draw",
+                "price": 3.75
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "winamax_de",
+        "title": "Winamax (DE)",
+        "last_update": "2026-08-23T10:10:30Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:30Z",
+            "outcomes": [
+              {
+                "name": "AS Monaco",
+                "price": 1.88
+              },
+              {
+                "name": "Le Havre",
+                "price": 3.7
+              },
+              {
+                "name": "Draw",
+                "price": 3.75
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "onexbet",
+        "title": "1xBet",
+        "last_update": "2026-08-23T10:10:04Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:04Z",
+            "outcomes": [
+              {
+                "name": "AS Monaco",
+                "price": 1.97
+              },
+              {
+                "name": "Le Havre",
+                "price": 3.94
+              },
+              {
+                "name": "Draw",
+                "price": 3.92
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:10:04Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.79,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 2.19,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "codere_it",
+        "title": "Codere (IT)",
+        "last_update": "2026-08-23T10:09:45Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "AS Monaco",
+                "price": 1.95
+              },
+              {
+                "name": "Le Havre",
+                "price": 3.75
+              },
+              {
+                "name": "Draw",
+                "price": 3.7
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.68,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 2.02,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "unibet_fr",
+        "title": "Unibet (FR)",
+        "last_update": "2026-08-23T10:10:04Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:04Z",
+            "outcomes": [
+              {
+                "name": "AS Monaco",
+                "price": 1.87
+              },
+              {
+                "name": "Le Havre",
+                "price": 3.8
+              },
+              {
+                "name": "Draw",
+                "price": 3.8
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "betclic_fr",
+        "title": "Betclic (FR)",
+        "last_update": "2026-08-23T10:10:01Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:01Z",
+            "outcomes": [
+              {
+                "name": "AS Monaco",
+                "price": 1.92
+              },
+              {
+                "name": "Le Havre",
+                "price": 3.78
+              },
+              {
+                "name": "Draw",
+                "price": 3.78
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "tipico_de",
+        "title": "Tipico",
+        "last_update": "2026-08-23T10:09:45Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "AS Monaco",
+                "price": 1.87
+              },
+              {
+                "name": "Le Havre",
+                "price": 3.9
+              },
+              {
+                "name": "Draw",
+                "price": 3.6
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.67,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 2.15,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "coolbet",
+        "title": "Coolbet",
+        "last_update": "2026-08-23T10:10:05Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:05Z",
+            "outcomes": [
+              {
+                "name": "AS Monaco",
+                "price": 1.98
+              },
+              {
+                "name": "Le Havre",
+                "price": 3.8
+              },
+              {
+                "name": "Draw",
+                "price": 3.8
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:10:05Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.75,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 2.18,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "betfair_ex_eu",
+        "title": "Betfair",
+        "last_update": "2026-08-23T10:10:05Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:05Z",
+            "outcomes": [
+              {
+                "name": "AS Monaco",
+                "price": 2.0
+              },
+              {
+                "name": "Le Havre",
+                "price": 4.0
+              },
+              {
+                "name": "Draw",
+                "price": 3.85
+              }
+            ]
+          },
+          {
+            "key": "h2h_lay",
+            "last_update": "2026-08-23T10:10:05Z",
+            "outcomes": [
+              {
+                "name": "AS Monaco",
+                "price": 2.04
+              },
+              {
+                "name": "Le Havre",
+                "price": 4.1
+              },
+              {
+                "name": "Draw",
+                "price": 3.9
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "pinnacle",
+        "title": "Pinnacle",
+        "last_update": "2026-08-23T10:10:27Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:27Z",
+            "outcomes": [
+              {
+                "name": "AS Monaco",
+                "price": 1.96
+              },
+              {
+                "name": "Le Havre",
+                "price": 3.96
+              },
+              {
+                "name": "Draw",
+                "price": 3.75
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:10:27Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.97,
+                "point": 2.75
+              },
+              {
+                "name": "Under",
+                "price": 1.93,
+                "point": 2.75
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "everygame",
+        "title": "Everygame",
+        "last_update": "2026-08-23T10:09:01Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:01Z",
+            "outcomes": [
+              {
+                "name": "AS Monaco",
+                "price": 1.91
+              },
+              {
+                "name": "Le Havre",
+                "price": 3.85
+              },
+              {
+                "name": "Draw",
+                "price": 3.6
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "suprabets",
+        "title": "Suprabets",
+        "last_update": "2026-08-23T10:06:20Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:06:20Z",
+            "outcomes": [
+              {
+                "name": "AS Monaco",
+                "price": 1.93
+              },
+              {
+                "name": "Le Havre",
+                "price": 3.86
+              },
+              {
+                "name": "Draw",
+                "price": 3.61
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "unibet_se",
+        "title": "Unibet (SE)",
+        "last_update": "2026-08-23T10:09:45Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "AS Monaco",
+                "price": 1.95
+              },
+              {
+                "name": "Le Havre",
+                "price": 3.85
+              },
+              {
+                "name": "Draw",
+                "price": 3.9
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.67,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 2.23,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "unibet_nl",
+        "title": "Unibet (NL)",
+        "last_update": "2026-08-23T10:10:27Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:27Z",
+            "outcomes": [
+              {
+                "name": "AS Monaco",
+                "price": 1.92
+              },
+              {
+                "name": "Le Havre",
+                "price": 3.75
+              },
+              {
+                "name": "Draw",
+                "price": 3.8
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:10:27Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.64,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 2.2,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "leovegas_se",
+        "title": "LeoVegas (SE)",
+        "last_update": "2026-08-23T10:10:29Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:29Z",
+            "outcomes": [
+              {
+                "name": "AS Monaco",
+                "price": 1.95
+              },
+              {
+                "name": "Le Havre",
+                "price": 3.85
+              },
+              {
+                "name": "Draw",
+                "price": 3.9
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:10:29Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.64,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 2.2,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "nordicbet",
+        "title": "Nordic Bet",
+        "last_update": "2026-08-23T10:10:28Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:28Z",
+            "outcomes": [
+              {
+                "name": "AS Monaco",
+                "price": 1.95
+              },
+              {
+                "name": "Le Havre",
+                "price": 3.7
+              },
+              {
+                "name": "Draw",
+                "price": 3.6
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:10:28Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.72,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 2.08,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "pmu_fr",
+        "title": "PMU (FR)",
+        "last_update": "2026-08-23T10:10:04Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:04Z",
+            "outcomes": [
+              {
+                "name": "AS Monaco",
+                "price": 1.89
+              },
+              {
+                "name": "Le Havre",
+                "price": 3.65
+              },
+              {
+                "name": "Draw",
+                "price": 3.75
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:10:04Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.56,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 2.08,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "marathonbet",
+        "title": "Marathon Bet",
+        "last_update": "2026-08-23T10:09:46Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:46Z",
+            "outcomes": [
+              {
+                "name": "AS Monaco",
+                "price": 1.94
+              },
+              {
+                "name": "Le Havre",
+                "price": 3.88
+              },
+              {
+                "name": "Draw",
+                "price": 3.86
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "betsson",
+        "title": "Betsson",
+        "last_update": "2026-08-23T10:09:45Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "AS Monaco",
+                "price": 1.95
+              },
+              {
+                "name": "Le Havre",
+                "price": 3.7
+              },
+              {
+                "name": "Draw",
+                "price": 3.6
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.72,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 2.08,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "betonlineag",
+        "title": "BetOnline.ag",
+        "last_update": "2026-08-23T10:09:45Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "AS Monaco",
+                "price": 1.95
+              },
+              {
+                "name": "Le Havre",
+                "price": 3.8
+              },
+              {
+                "name": "Draw",
+                "price": 3.85
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.77,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 2.1,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "sport888",
+        "title": "888sport",
+        "last_update": "2026-08-23T10:09:44Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:44Z",
+            "outcomes": [
+              {
+                "name": "AS Monaco",
+                "price": 1.91
+              },
+              {
+                "name": "Le Havre",
+                "price": 3.6
+              },
+              {
+                "name": "Draw",
+                "price": 3.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "williamhill",
+        "title": "William Hill",
+        "last_update": "2026-08-23T10:10:06Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:06Z",
+            "outcomes": [
+              {
+                "name": "AS Monaco",
+                "price": 1.91
+              },
+              {
+                "name": "Le Havre",
+                "price": 3.6
+              },
+              {
+                "name": "Draw",
+                "price": 3.6
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:10:06Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.75,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 2.05,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "gtbets",
+        "title": "GTbets",
+        "last_update": "2026-08-23T10:09:45Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "AS Monaco",
+                "price": 1.96
+              },
+              {
+                "name": "Le Havre",
+                "price": 3.76
+              },
+              {
+                "name": "Draw",
+                "price": 3.84
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.68,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 2.13,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "0a88bfab377a4bbddf8aec2983bf4c15",
+    "sport_key": "soccer_france_ligue_one",
+    "sport_title": "Ligue 1 - France",
+    "commence_time": "2026-08-23T18:45:00Z",
+    "home_team": "Rennes",
+    "away_team": "Paris Saint Germain",
+    "bookmakers": [
+      {
+        "key": "winamax_de",
+        "title": "Winamax (DE)",
+        "last_update": "2026-08-23T10:10:30Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:30Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.5
+              },
+              {
+                "name": "Rennes",
+                "price": 5.3
+              },
+              {
+                "name": "Draw",
+                "price": 4.6
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "winamax_fr",
+        "title": "Winamax (FR)",
+        "last_update": "2026-08-23T10:09:28Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:28Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.5
+              },
+              {
+                "name": "Rennes",
+                "price": 5.4
+              },
+              {
+                "name": "Draw",
+                "price": 4.7
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "onexbet",
+        "title": "1xBet",
+        "last_update": "2026-08-23T10:10:04Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:04Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.55
+              },
+              {
+                "name": "Rennes",
+                "price": 6.14
+              },
+              {
+                "name": "Draw",
+                "price": 4.78
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:10:04Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 2.31,
+                "point": 3.5
+              },
+              {
+                "name": "Under",
+                "price": 1.72,
+                "point": 3.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "codere_it",
+        "title": "Codere (IT)",
+        "last_update": "2026-08-23T10:09:45Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.53
+              },
+              {
+                "name": "Rennes",
+                "price": 5.4
+              },
+              {
+                "name": "Draw",
+                "price": 4.7
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 2.11,
+                "point": 3.5
+              },
+              {
+                "name": "Under",
+                "price": 1.62,
+                "point": 3.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "betfair_ex_eu",
+        "title": "Betfair",
+        "last_update": "2026-08-23T10:10:05Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:05Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.56
+              },
+              {
+                "name": "Rennes",
+                "price": 6.2
+              },
+              {
+                "name": "Draw",
+                "price": 4.9
+              }
+            ]
+          },
+          {
+            "key": "h2h_lay",
+            "last_update": "2026-08-23T10:10:05Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.58
+              },
+              {
+                "name": "Rennes",
+                "price": 6.4
+              },
+              {
+                "name": "Draw",
+                "price": 5.0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "unibet_fr",
+        "title": "Unibet (FR)",
+        "last_update": "2026-08-23T10:10:04Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:04Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.51
+              },
+              {
+                "name": "Rennes",
+                "price": 6.0
+              },
+              {
+                "name": "Draw",
+                "price": 5.0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "betclic_fr",
+        "title": "Betclic (FR)",
+        "last_update": "2026-08-23T10:10:01Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:01Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.52
+              },
+              {
+                "name": "Rennes",
+                "price": 5.9
+              },
+              {
+                "name": "Draw",
+                "price": 4.8
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "tipico_de",
+        "title": "Tipico",
+        "last_update": "2026-08-23T10:09:45Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.47
+              },
+              {
+                "name": "Rennes",
+                "price": 5.7
+              },
+              {
+                "name": "Draw",
+                "price": 4.7
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 2.1,
+                "point": 3.5
+              },
+              {
+                "name": "Under",
+                "price": 1.67,
+                "point": 3.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "coolbet",
+        "title": "Coolbet",
+        "last_update": "2026-08-23T10:10:05Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:05Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.55
+              },
+              {
+                "name": "Rennes",
+                "price": 5.85
+              },
+              {
+                "name": "Draw",
+                "price": 4.65
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:10:05Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.76,
+                "point": 3.0
+              },
+              {
+                "name": "Under",
+                "price": 2.17,
+                "point": 3.0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "pinnacle",
+        "title": "Pinnacle",
+        "last_update": "2026-08-23T10:10:27Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:27Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.54
+              },
+              {
+                "name": "Rennes",
+                "price": 5.84
+              },
+              {
+                "name": "Draw",
+                "price": 4.69
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:10:27Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 2.07,
+                "point": 3.25
+              },
+              {
+                "name": "Under",
+                "price": 1.85,
+                "point": 3.25
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "everygame",
+        "title": "Everygame",
+        "last_update": "2026-08-23T10:09:01Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:01Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.53
+              },
+              {
+                "name": "Rennes",
+                "price": 5.75
+              },
+              {
+                "name": "Draw",
+                "price": 4.6
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "suprabets",
+        "title": "Suprabets",
+        "last_update": "2026-08-23T10:06:20Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:06:20Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.52
+              },
+              {
+                "name": "Rennes",
+                "price": 5.7
+              },
+              {
+                "name": "Draw",
+                "price": 4.6
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "pmu_fr",
+        "title": "PMU (FR)",
+        "last_update": "2026-08-23T10:10:04Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:04Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.53
+              },
+              {
+                "name": "Rennes",
+                "price": 5.6
+              },
+              {
+                "name": "Draw",
+                "price": 4.8
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:10:04Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 2.0,
+                "point": 3.5
+              },
+              {
+                "name": "Under",
+                "price": 1.6,
+                "point": 3.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "marathonbet",
+        "title": "Marathon Bet",
+        "last_update": "2026-08-23T10:09:46Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:46Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.53
+              },
+              {
+                "name": "Rennes",
+                "price": 6.05
+              },
+              {
+                "name": "Draw",
+                "price": 4.7
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "unibet_se",
+        "title": "Unibet (SE)",
+        "last_update": "2026-08-23T10:09:45Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.53
+              },
+              {
+                "name": "Rennes",
+                "price": 6.0
+              },
+              {
+                "name": "Draw",
+                "price": 4.8
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 2.16,
+                "point": 3.5
+              },
+              {
+                "name": "Under",
+                "price": 1.72,
+                "point": 3.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "leovegas_se",
+        "title": "LeoVegas (SE)",
+        "last_update": "2026-08-23T10:10:29Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:29Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.53
+              },
+              {
+                "name": "Rennes",
+                "price": 6.0
+              },
+              {
+                "name": "Draw",
+                "price": 4.8
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:10:29Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 2.12,
+                "point": 3.5
+              },
+              {
+                "name": "Under",
+                "price": 1.7,
+                "point": 3.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "unibet_nl",
+        "title": "Unibet (NL)",
+        "last_update": "2026-08-23T10:10:27Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:27Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.5
+              },
+              {
+                "name": "Rennes",
+                "price": 5.8
+              },
+              {
+                "name": "Draw",
+                "price": 4.7
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:10:27Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 2.12,
+                "point": 3.5
+              },
+              {
+                "name": "Under",
+                "price": 1.7,
+                "point": 3.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "nordicbet",
+        "title": "Nordic Bet",
+        "last_update": "2026-08-23T10:10:28Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:28Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.5
+              },
+              {
+                "name": "Rennes",
+                "price": 5.4
+              },
+              {
+                "name": "Draw",
+                "price": 4.8
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:10:28Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.43,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 2.75,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "betsson",
+        "title": "Betsson",
+        "last_update": "2026-08-23T10:09:45Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.5
+              },
+              {
+                "name": "Rennes",
+                "price": 5.4
+              },
+              {
+                "name": "Draw",
+                "price": 4.8
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.43,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 2.75,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "betonlineag",
+        "title": "BetOnline.ag",
+        "last_update": "2026-08-23T10:09:45Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.54
+              },
+              {
+                "name": "Rennes",
+                "price": 5.7
+              },
+              {
+                "name": "Draw",
+                "price": 4.76
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 2.18,
+                "point": 3.5
+              },
+              {
+                "name": "Under",
+                "price": 1.72,
+                "point": 3.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "sport888",
+        "title": "888sport",
+        "last_update": "2026-08-23T10:09:44Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:44Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.5
+              },
+              {
+                "name": "Rennes",
+                "price": 5.0
+              },
+              {
+                "name": "Draw",
+                "price": 4.33
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "williamhill",
+        "title": "William Hill",
+        "last_update": "2026-08-23T10:10:06Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:10:06Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.5
+              },
+              {
+                "name": "Rennes",
+                "price": 5.0
+              },
+              {
+                "name": "Draw",
+                "price": 4.4
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:10:06Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 1.44,
+                "point": 2.5
+              },
+              {
+                "name": "Under",
+                "price": 2.6,
+                "point": 2.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "gtbets",
+        "title": "GTbets",
+        "last_update": "2026-08-23T10:09:45Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Paris Saint Germain",
+                "price": 1.5
+              },
+              {
+                "name": "Rennes",
+                "price": 5.29
+              },
+              {
+                "name": "Draw",
+                "price": 4.69
+              }
+            ]
+          },
+          {
+            "key": "totals",
+            "last_update": "2026-08-23T10:09:45Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": 2.19,
+                "point": 3.5
+              },
+              {
+                "name": "Under",
+                "price": 1.69,
+                "point": 3.5
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
