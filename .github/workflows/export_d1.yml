@@ -1,0 +1,64 @@
+name: Export D1 -> repo (cotes denses)
+
+# Chaque lundi : rapatrie les prix, clôtures et résultats captés par le Worker,
+# puis lance la mesure forward F1/F2/F3 (validation/etudes/forward_fr.py).
+# Secrets : WORKER_URL, READ_TOKEN.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * 1"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: export-d1
+  cancel-in-progress: false
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Exporter prix, clôtures et résultats
+        env:
+          WORKER_URL: ${{ secrets.WORKER_URL }}
+          READ_TOKEN: ${{ secrets.READ_TOKEN }}
+        run: |
+          set -euo pipefail
+          mkdir -p data/raw/d1
+          STAMP=$(date -u +%Y%m%dT%H%MZ)
+          SINCE=$(cat data/raw/d1/last_ts 2>/dev/null || echo "1970-01-01T00:00:00Z")
+          while : ; do
+            curl -fsS -D headers.txt -H "Authorization: Bearer $READ_TOKEN" \
+              "$WORKER_URL/export?since=$SINCE&snapshots=40" -o page.csv
+            NEXT=$(grep -i '^x-next-since:' headers.txt | cut -d' ' -f2 | tr -d '\r')
+            [ -z "$NEXT" ] && break
+            if [ "$(wc -l < page.csv)" -gt 1 ]; then
+              gzip -c page.csv > "data/raw/d1/prices_${NEXT//:/}.csv.gz"
+            fi
+            SINCE="$NEXT"
+            echo "$SINCE" > data/raw/d1/last_ts
+          done
+          FROM=$(date -u -d "14 days ago" +%Y-%m-%d)
+          curl -fsS -H "Authorization: Bearer $READ_TOKEN" \
+            "$WORKER_URL/closing?from=$FROM" | gzip -c > "data/raw/d1/closing_${STAMP}.csv.gz"
+          # Résultats : la table complète, une seule copie à jour
+          curl -fsS -H "Authorization: Bearer $READ_TOKEN" \
+            "$WORKER_URL/results" | gzip -c > "data/raw/d1/results_latest.csv.gz"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Mesure forward F1/F2/F3
+        run: |
+          pip install pandas numpy
+          python validation/etudes/forward_fr.py | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Committer
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/raw/d1/ data/validation/forward_*.csv data/validation/forward_verdicts.json 2>/dev/null || true
+          git add data/raw/d1/
+          git diff --cached --quiet || git commit -m "data(d1): export + forward $(date -u +%F)"
+          git push
