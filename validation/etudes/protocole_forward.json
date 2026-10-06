@@ -1,0 +1,35 @@
+{
+  "_doc": "Définitions opérationnelles de F1, F2, F3 (hypotheses_forward de frozen_hypotheses.json), gelées le 2026-10-06 AVANT toute donnée exploitable : à cette date la capture D1 ne contient qu'un passage de fond (palier 6 h), aucune détection n'est possible. Ces règles précisent les hypothèses sans les modifier. Toute correction = nouvelle version datée.",
+  "date_gel": "2026-10-06",
+  "version": 1,
+  "source": "exports du Worker : data/raw/d1/prices_*.csv.gz, closing_*.csv.gz, results_*.csv",
+  "marche": "h2h (1X2) uniquement",
+  "books_fr": ["winamax_fr", "betclic_fr", "unibet_fr", "pmu_fr"],
+  "reference": "pinnacle, probabilités dévigorisées (méthode proportionnelle) sur les 3 issues",
+  "prix_courant": "le dernier prix connu d'un book à l'instant t est sa dernière ligne de prix de ts ≤ t (les exports ne stockent que les changements)",
+  "detection": {
+    "regle": "une issue est détectée au premier instant t (strictement avant le coup d'envoi) où p_fair_pinnacle(t) − min(p_fair_pinnacle sur [t − 6 h, t[) ≥ 0,03",
+    "unicite": "une seule détection par (match, issue) : la première",
+    "instants_evalues": "les horodatages où au moins un prix Pinnacle h2h change"
+  },
+  "cloture": {
+    "regle": "dernier prix Pinnacle h2h avant le coup d'envoi (export closing)",
+    "qualite": "match exclu si le dernier passage réussi est à plus de 15 min du coup d'envoi (last_pass_min_before > 15) ; exclusions comptées et publiées"
+  },
+  "F1": {
+    "mesure": "pour chaque détection et chaque book FR : délai entre la détection et le premier instant où la proba dévigorisée du book sur l'issue a parcouru ≥ 50 % du mouvement Pinnacle (Δ mesuré entre min de la fenêtre et t) ; censuré au coup d'envoi",
+    "sortie": "délai médian (minutes) et part de mouvements suivis avant le coup d'envoi, par book"
+  },
+  "F2": {
+    "entree": "à l'instant de détection t, pour chaque book FR proposant l'issue : EV_det = cote_FR(t) × p_fair_pinnacle(t) − 1 ; entrée si EV_det > 0",
+    "clv": "CLV = cote_FR(t) × p_fair_pinnacle_cloture − 1 (prix d'entrée = prix à la détection, jamais un prix postérieur)",
+    "roi": "gain unitaire = cote_FR(t) − 1 si l'issue gagne, −1 sinon ; matchs sans résultat exclus du ROI seulement",
+    "bootstrap": "5000 tirages, rééchantillonnage par match",
+    "critere": "IC95 du CLV moyen > 0 avec n ≥ 30 entrées sur ≥ 30 matchs distincts ; conclusion de mise seulement si ROI > 0 avec n ≥ 100",
+    "evaluation": "rapport hebdomadaire descriptif ; verdict confirmatoire unique au premier lundi où n ≥ 30 entrées et ≥ 30 matchs"
+  },
+  "F3": {
+    "mesure": "à la clôture : EV_best_FR = max cote FR (dernier prix avant le coup d'envoi) × p_fair_pinnacle_cloture − 1, par issue ; stat = EV_best_FR(N) − (EV_best_FR(1) + EV_best_FR(2)) / 2",
+    "critere": "IC95 > 0 avec n ≥ 30 matchs ; verdict unique au premier lundi où n ≥ 30"
+  }
+}
