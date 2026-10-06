@@ -1,0 +1,35 @@
+name: Études historiques (hypothèses gelées)
+
+# Télécharge l'historique football-data vierge puis lance UNE FOIS les études de
+# validation/etudes/frozen_hypotheses_hist.json. Le gel doit être commité AVANT.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: etudes-hist
+  cancel-in-progress: false
+
+jobs:
+  hist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pandas numpy tabulate
+      - name: Télécharger l'historique
+        run: python validation/etudes/fetch_hist.py
+      - name: Lancer les études
+        run: python validation/etudes/etudes_hist.py | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Committer
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/raw/footballdata_hist/ data/validation/hist_couverture.csv data/validation/etudes_hist.csv
+          git diff --cached --quiet || git commit -m "Études historiques : run confirmatoire"
+          git push
