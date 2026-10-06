@@ -1,0 +1,95 @@
+{
+  "_doc": "Hypothèses testées sur l'historique football-data JAMAIS examiné. Gelées le 2026-10-06 AVANT tout téléchargement. Aucune modification après la date de gel : une hypothèse corrigée = nouvelle entrée datée. Un seul run confirmatoire ; Holm sur la famille des tests marqués 'confirmatoire'.",
+  "date_gel": "2026-10-06",
+  "source": "football-data.co.uk, dossier data/raw/footballdata_hist/",
+  "donnees_vierges": {
+    "F1": "saisons < 2122 (les saisons 2122-2526 ont déjà servi aux études M1-M7)",
+    "E0": "saisons < 2122 (idem)",
+    "D1, I1, SP1, F2, E1": "toutes saisons téléchargées (jamais examinées)"
+  },
+  "saisons_telechargees": [
+    "1011",
+    "1112",
+    "1213",
+    "1314",
+    "1415",
+    "1516",
+    "1617",
+    "1718",
+    "1819",
+    "1920",
+    "2021",
+    "2122",
+    "2223",
+    "2324",
+    "2425",
+    "2526"
+  ],
+  "filtre_couverture": "un match n'est retenu que si PSH/PSD/PSA, PSCH/PSCD/PSCA et FTR sont présents ; la couverture par ligue et saison est publiée AVANT les résultats",
+  "alpha": 0.05,
+  "bootstrap": 5000,
+  "seuil_move": 0.03,
+  "hypotheses": [
+    {
+      "id": "R-M4",
+      "type": "confirmatoire",
+      "enonce": "Prime du nul en Ligue 1 : la meilleure cote soft de clôture (max B365/BW/IW/WH/VC disponibles) est moins taxée sur le nul que sur 1 et 2.",
+      "donnees": "F1 vierge",
+      "mesure": "moyenne(EV_best(N) − (EV_best(1)+EV_best(2))/2), EV_best = cote × p_fair_PSC − 1",
+      "critere": "IC95 > 0 (unilatéral)"
+    },
+    {
+      "id": "R-M6",
+      "type": "confirmatoire",
+      "enonce": "Résidu après gros mouvement en Premier League : sur les issues dont la proba Pinnacle monte de ≥ 3 pts entre vendredi et la clôture, fréquence observée > p_fair_close.",
+      "donnees": "E0 vierge",
+      "mesure": "moyenne(résultat − p_fair_close)",
+      "critere": "IC95 > 0 (unilatéral)",
+      "secondaire": "même mesure par autre ligue, rapportée sans décision"
+    },
+    {
+      "id": "H3",
+      "type": "confirmatoire",
+      "enonce": "Promus : sur leurs 8 premiers matchs de championnat, la clôture Pinnacle se trompe dans un sens systématique sur les promus.",
+      "donnees": "toutes ligues vierges ; promu = équipe absente de la saison précédente de la même ligue (première saison téléchargée de chaque ligue exclue)",
+      "mesure": "moyenne(résultat − p_fair_close) sur l'issue 'victoire du promu' (domicile ou extérieur)",
+      "critere": "IC95 bilatéral excluant 0 ; sens rapporté"
+    },
+    {
+      "id": "H4",
+      "type": "confirmatoire",
+      "enonce": "Divergence bet365 : quand Pinnacle raccourcit une issue de ≥ 3 pts et que bet365 ne la raccourcit pas (proba juste B365 clôture − ouverture ≤ 0), la cote bet365 de clôture a un EV positif contre la juste Pinnacle de clôture.",
+      "donnees": "toutes ligues vierges",
+      "mesure": "moyenne(B365C × p_fair_PSC − 1) ; ROI réalisé rapporté, non décisionnel",
+      "critere": "IC95 > 0 (unilatéral) — critère ABSOLU, pas relatif"
+    },
+    {
+      "id": "H5",
+      "type": "confirmatoire",
+      "enonce": "Le retard de bet365 (EV|move − EV|tout, cf. M5) diminue avec le temps.",
+      "donnees": "toutes ligues vierges ; tôt = saisons ≤ 1617, tard = saisons ≥ 1718",
+      "mesure": "écart(tard) − écart(tôt)",
+      "critere": "IC95 < 0 (unilatéral)"
+    },
+    {
+      "id": "H6",
+      "type": "descriptif",
+      "enonce": "En Ligue 1, la ligne Pinnacle du vendredi est aussi bonne que la clôture ; en Premier League elle est moins bonne.",
+      "donnees": "F1 vierge et E0 vierge",
+      "mesure": "log-loss vendredi − log-loss clôture, par ligue, IC95 bootstrap",
+      "critere": "descriptif : F1 IC95 contient 0 ET E0 IC95 > 0"
+    },
+    {
+      "id": "H5b",
+      "type": "confirmatoire",
+      "date_gel": "2026-10-06",
+      "origine": "Ajoutée après un premier run interrompu par une erreur de code (aucun résultat ni couverture affichés). H5 risque d'être non testable : les cotes bet365 de CLÔTURE n'existent dans football-data qu'à partir de 2019/20, donc la période 'tôt' (≤ 1617) est vide. H5 reste inchangée et sera déclarée non testable si c'est le cas.",
+      "enonce": "Le retard de bet365 (EV|move − EV|tout) diminue avec le temps, sur la période où bet365 clôture existe.",
+      "donnees": "toutes ligues vierges ; tôt = saisons 1920 à 2122, tard = saisons ≥ 2223",
+      "mesure": "écart(tard) − écart(tôt)",
+      "critere": "IC95 < 0 (unilatéral)"
+    }
+  ],
+  "n_min": 30,
+  "regle_n_min": "une hypothèse avec n < 30 (issues) est déclarée 'n insuffisant', quel que soit son p"
+}
