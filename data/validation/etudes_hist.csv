@@ -1,0 +1,9 @@
+id,n,stat,ic_lo,ic_hi,p,detail,p_holm,verdict
+R-M4,657,-0.00435,-0.00808,-0.00057,0.98680,EV_best H=-0.0211 D=-0.0254 A=-0.0210,0.98680,NON CONFIRMÉE
+R-M6,704,0.01134,-0.02362,0.04561,0.26280,fréq=0.4659 p_close=0.4546,0.78840,NON CONFIRMÉE
+H3,2368,-0.01718,-0.03381,-0.00086,0.04120,fréq=0.2931 p_close=0.3102 (bilatéral),0.20600,NON CONFIRMÉE
+H4,42,0.00216,-0.01017,0.01530,0.36900,part EV>0=0.476 ROI réalisé=+0.0726,0.78840,NON CONFIRMÉE
+H5,0,,,,,NON TESTABLE : période sans cote bet365 de clôture,,non testable
+H5b,14096,-0.00095,-0.00287,0.00096,0.17020,écart tôt=+0.0071 tard=+0.0061,0.68080,NON CONFIRMÉE
+H6_F1,3310,0.00314,0.00062,0.00557,0.01360,LL vendredi=0.98817 clôture=0.98503,,vendredi moins bon
+H6_E0,3420,0.00265,0.00046,0.00494,0.02160,LL vendredi=0.95773 clôture=0.95508,,vendredi moins bon
