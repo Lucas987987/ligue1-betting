@@ -24,6 +24,10 @@ event_id,issue,book,delai_min,suivi
 5d3606630a2d3a218a6340d082c1bdc6,H,betclic_fr,0.0,True
 5d3606630a2d3a218a6340d082c1bdc6,H,unibet_fr,0.0,True
 5d3606630a2d3a218a6340d082c1bdc6,H,pmu_fr,,False
+8aa36b30d655d6c81ed98bf9ec1b4039,A,winamax_fr,0.0,True
+8aa36b30d655d6c81ed98bf9ec1b4039,A,betclic_fr,0.0,True
+8aa36b30d655d6c81ed98bf9ec1b4039,A,unibet_fr,0.0,True
+8aa36b30d655d6c81ed98bf9ec1b4039,A,pmu_fr,45.766666666666666,True
 b077aa049133c0358bcd643bfee48da3,A,winamax_fr,0.0,True
 b077aa049133c0358bcd643bfee48da3,A,betclic_fr,0.0,True
 b077aa049133c0358bcd643bfee48da3,A,unibet_fr,0.0,True
